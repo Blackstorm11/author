@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
 
-@Controller('author')
+@Controller('Quotes')
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
@@ -18,8 +18,8 @@ export class AuthorController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authorService.findOne(+id);
+  findById(@Param('id') id: number) {
+    return this.authorService.findByID(+id);
   }
 
   @Patch(':id')

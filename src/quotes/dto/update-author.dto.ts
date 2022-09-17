@@ -2,10 +2,11 @@ import { PartialType } from '@nestjs/mapped-types';
 import { CreateAuthorDto } from './create-author.dto';
 
 export class UpdateAuthorDto extends PartialType(CreateAuthorDto) {
-    __:string;
+    __v:string;
     AName:string;
     likes:number;
     dislike:number;
-    quotes:string;
+    quote:string;
     isActive:boolean;
+    tags:string;
 }

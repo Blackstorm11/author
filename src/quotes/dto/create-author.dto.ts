@@ -1,9 +1,10 @@
 export class CreateAuthorDto {
-    __:string;
+    __v:string;
     AName:string;
     likes:number;
     dislike:number;
-    quotes:string;
+    quote:string;
     isActive:boolean;
+    tags:string;
 
 }

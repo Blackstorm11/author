@@ -2,23 +2,26 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
-export class Author {
+export class Quotes {
     @PrimaryGeneratedColumn()
     id: number
 
     @Column({nullable:true})
-    __: string;
+    __v: string;
 
     @Column({nullable:true})
     AName: string;
     @Column()
-    likes:number
+    likes:number;
 
     @Column()
-    dislike:number
+    dislike:number;
 
     @Column()
-    quotes:string
+    quote:string;
     @Column()
-    isActive:boolean
+    isActive:boolean;
+
+    @Column()
+    tags:string;
 }
