@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { parse, resolve } from 'path';
 import { Repository } from 'typeorm';
@@ -27,10 +27,15 @@ export class AuthorService {
     return this.authorRepository.find();
   }
 
-  async findByID(id: number) {
-    return this.authorRepository;
-
+  async findById(id:number):Promise<Quotes>{
+    const user=await this.authorRepository.findOneBy({id: id});
+    if (!user){
+      const errors={User:'not found'}
+            throw new HttpException({errors},404);
+    }
+    return user;
   }
+
 
   update(id: number, updateAuthorDto: UpdateAuthorDto) {
     let author:Quotes= new Quotes();

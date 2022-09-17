@@ -19,7 +19,7 @@ export class AuthorController {
 
   @Get(':id')
   findById(@Param('id') id: number) {
-    return this.authorService.findByID(+id);
+    return this.authorService.findById(+id);
   }
 
   @Patch(':id')
