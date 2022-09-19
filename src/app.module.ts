@@ -1,21 +1,31 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthorModule } from './quotes/author.module';
 
 @Module({
   imports: [AuthorModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5400,
-      username: 'dev-user',
-      password: 'dev-user',
-      database: 'quotes-app',
-      synchronize: true,
-      entities:[__dirname + '/**/*.entity{.ts,.js}',   
-    ]
-      
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule.forRoot({
+        isGlobal:true,
+        envFilePath:".local.env",
+        //envFilePath:".prod.env",
+      })
+        ],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST'),
+        port: +configService.get('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_DATABASE'),
+        entities: [__dirname + '/**/**/*.entity{.ts,.js}'],
+        synchronize:  configService.get<boolean>('DB_SYNC'),
+        logging:true
+
+      }),
+      inject: [ConfigService],
     }),
 ],
   
