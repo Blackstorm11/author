@@ -5,7 +5,7 @@ import { Column, Entity, Generated, PrimaryColumn, PrimaryGeneratedColumn } from
 export class Quotes {
     @PrimaryColumn({type:"uuid"})
     @Generated("uuid")
-    id:string;
+    _id:string;
 
     @Column({nullable:true})
     __v: string;

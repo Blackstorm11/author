@@ -17,18 +17,18 @@ export class AuthorController {
     return this.authorService.findAll();
   }
 
-  @Get(':id')
-  findById(@Param('id') id: string) {
-    return this.authorService.findById(id);
+  @Get(':_id')
+  findById(@Param('_id') _id: string) {
+    return this.authorService.findById(_id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthorDto: UpdateAuthorDto) {
-    return this.authorService.update(id, updateAuthorDto);
+  @Patch(':_id')
+  update(@Param('_id') _id: string, @Body() updateAuthorDto: UpdateAuthorDto) {
+    return this.authorService.update(_id, updateAuthorDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authorService.remove(id);
+  @Delete(':_id')
+  remove(@Param('_id') _id: string) {
+    return this.authorService.remove(_id);
   }
 }

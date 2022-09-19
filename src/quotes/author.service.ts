@@ -27,8 +27,8 @@ export class AuthorService {
     return this.authorRepository.find();
   }
 
-  async findById(id: string):Promise<Quotes>{
-    const author=await this.authorRepository.findOneBy({id:id});
+  async findById(_id: string):Promise<Quotes>{
+    const author=await this.authorRepository.findOneBy({_id:_id});
     if (!author){
       const errors={author:'not found'}
             throw new HttpException({errors},404);
@@ -37,7 +37,7 @@ export class AuthorService {
   }
 
 
-  update(id: string, updateAuthorDto: UpdateAuthorDto) {
+  update(_id: string, updateAuthorDto: UpdateAuthorDto) {
     let author:Quotes= new Quotes();
     author.__v=updateAuthorDto.__v;
     author.AName=updateAuthorDto.AName;
@@ -50,8 +50,8 @@ export class AuthorService {
     
   }
 
-  remove(id: string) {
-    return this.authorRepository.delete(id);
+  remove(_id: string) {
+    return this.authorRepository.delete(_id);
   }
 
 
