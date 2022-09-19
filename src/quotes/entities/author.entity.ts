@@ -1,16 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Generated, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
 export class Quotes {
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryColumn({type:"uuid"})
+    @Generated("uuid")
+    id:string;
 
     @Column({nullable:true})
     __v: string;
-
-    @Column({nullable:true})
+   
+    @Column()
     AName: string;
+   
     @Column()
     likes:number;
 
@@ -24,4 +26,6 @@ export class Quotes {
 
     @Column()
     tags:string;
+    
+
 }

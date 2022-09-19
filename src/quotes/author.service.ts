@@ -27,17 +27,17 @@ export class AuthorService {
     return this.authorRepository.find();
   }
 
-  async findById(id:number):Promise<Quotes>{
-    const user=await this.authorRepository.findOneBy({id: id});
-    if (!user){
-      const errors={User:'not found'}
+  async findById(id: string):Promise<Quotes>{
+    const author=await this.authorRepository.findOneBy({id:id});
+    if (!author){
+      const errors={author:'not found'}
             throw new HttpException({errors},404);
     }
-    return user;
+    return author;
   }
 
 
-  update(id: number, updateAuthorDto: UpdateAuthorDto) {
+  update(id: string, updateAuthorDto: UpdateAuthorDto) {
     let author:Quotes= new Quotes();
     author.__v=updateAuthorDto.__v;
     author.AName=updateAuthorDto.AName;
@@ -50,7 +50,9 @@ export class AuthorService {
     
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.authorRepository.delete(id);
   }
+
+
 }

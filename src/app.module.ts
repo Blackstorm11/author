@@ -13,7 +13,9 @@ import { AuthorModule } from './quotes/author.module';
       password: 'dev-user',
       database: 'quotes-app',
       synchronize: true,
-      entities:[__dirname + '/**/*.entity{.ts,.js}']
+      entities:[__dirname + '/**/*.entity{.ts,.js}',   
+    ]
+      
     }),
 ],
   
